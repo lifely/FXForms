@@ -1324,13 +1324,13 @@ static BOOL *FXFormCanSetValueForKey(id<FXForm> form, NSString *key)
 {
     FXFormField *field = [self fieldForIndexPath:indexPath];
 
-    //set form field
-    ((id<FXFormFieldCell>)cell).field = field;
-    
     //configure cell
     [field.cellConfig enumerateKeysAndObjectsUsingBlock:^(NSString *keyPath, id value, __unused BOOL *stop) {
         [cell setValue:value forKeyPath:keyPath];
     }];
+    
+    //set form field
+    ((id<FXFormFieldCell>)cell).field = field;
     
     //forward to delegate
     if ([self.delegate respondsToSelector:_cmd])
